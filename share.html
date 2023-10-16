@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 240px;
+            height: 100px;
+            margin:auto;
+            margin-top: 10px;
+        }
+
+        .menu {
+            background-color: #333;
+            padding: 10px;
+            border: 1px solid #111;
+            text-align: left;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .header {
+            background-color: #272822;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            cursor: grab;
+        }
+
+        .header:active {
+            cursor: grabbing;
+        }
+
+        .menu-title {
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom:3px;
+            background-color: #555;
+            color: white;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border-radius: 50%;
+        }
+
+        .checkbox-label {
+            margin-right: 10px;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+        }
+ 
+
+        .text {
+            width: 60px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .text.current {
+            background-color: #7e7e7e70;
+            border-radius: 10px;
+            width: 150px;
+            font-weight: bold;
+            color: white;
+            margin-bottom:10px;
+            margin-top:-3px;
+        }
+
+        input[type=radio]  {
+            display: none;
+        }
+
+        .textradio {
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type=radio] + label {
+            padding: 3px 7px;
+            background: #333;
+            color: white;
+            border-radius: 5px;
+        }
+
+        input[type=radio]:checked + label {
+            background: #007bff70;
+        }
+    </style>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        h5gg.require(7.9); 
+    var h5frida=h5gg.loadPlugin("h5frida", "Frameworks/h5frida-16.1.4.dylib");
+    if(!h5frida) throw "Failed to load h5frida plugin";
+    
+    function ActiveCodePatch(fpath, vaddr, bytes) {
+        if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+            var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+            alert(fpath+":0x"+vaddr.toString(16)+"-修改失败!\n" + fpath+":0x"+vaddr.toString(16)+"-PatchFailed!\n" + result);return false;
+        } return true;
+    }
+    function DeactiveCodePatch(fpath, vaddr, bytes) {
+        return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+    }
+
+
+
+        function fs1(input)
+    {
+        if (input.value=='on') {
+            ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");  
+            ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");  
+            DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+         
+    }
+    else if (input.value=='off'){
+          DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 	
+          DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");  
+          ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+    }
+    }
+
+
+
+    function fs2(input)//aim
+    {
+        if (input.value=='on') {
+          ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 
+          ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 
+    
+    }
+    else if (input.value=='on1'){
+          ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 	
+          DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+         
+    }
+    else if (input.value=='off'){
+          DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 	
+          DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+         
+    }
+    }
+
+
+    function fs3(input)//aim
+    {
+        if (input.value=='on') {
+        ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 
+    }
+    else if (input.value=='off'){
+        DeactiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE"); 	
+    }
+    }
+
+//auto patch
+
+ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+
+ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+
+ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", OFFSET, "BYTE");
+
+    </script>
+</head>
+<body>
+<div class="container">
+<div id="titleBar">
+    <div class="draggable header">
+        <div class="menu-title">HHN iOS-hhnios.site</div>
+    </div>
+</div>
+    <div class="menu">
+            <p class="text current">Chức năng chính</p>
+            
+            <div class="menu-item">
+                <label for="checkbox1" class="checkbox-label">Fs1:</label>
+                <input onclick="fs1(this)" name="radio-group1" type="radio" value="off" id="radio-off1" checked>
+                <label for="radio-off1" class="textradio">Off</label>
+                <input onclick="fs1(this)" name="radio-group1" type="radio" value="on" id="radio-on1">
+                <label for="radio-on1" class="textradio">On</label>
+            </div>
+            
+            <div class="menu-item">
+                <label for="checkbox2" class="checkbox-label">Fs2:</label>
+                <input onclick="fs2(this)" name="radio-group2" type="radio" value="off" id="radio-off2" checked>
+                <label for="radio-off2" class="textradio">Off</label>
+                <input onclick="fs2(this)" name="radio-group2" type="radio" value="on1" id="radio-on2-1">
+                <label for="radio-on2-1" class="textradio">On1</label>
+                <input onclick="fs2(this)" name="radio-group2" type="radio" value="on2" id="radio-on2-2">
+                <label for="radio-on2-2" class="textradio">On2</label>
+            </div>
+            
+            <div class="menu-item">
+                <label for="checkbox3" class="checkbox-label">Fs3:</label>
+                <input onclick="fs3(this)" name="radio-group3" type="radio" value="off" id="radio-off3" checked>
+                <label for="radio-off3" class="textradio">Off</label>
+                <input onclick="fs3(this)" name="radio-group3" type="radio" value="on" id="radio-on3">
+                <label for="radio-on3" class="textradio">On</label>
+            </div>
+    </div>
+</body>
+</html>
