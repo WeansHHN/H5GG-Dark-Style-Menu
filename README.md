@@ -9,3 +9,5 @@ Remember this is for <a href="https://github.com/H5GG/H5GG">H5GG</a> and this me
 
 # Images
 <img src="https://raw.githubusercontent.com/WeansHHN/H5GG-Dark-Style-Menu/main/7EB40239-0152-4D85-9259-362C4F04DEAB.jpeg" style="width:80%">
+
+### [Download](https://github.com/WeansHHN/H5GG-Dark-Style-Menu/archive/refs/heads/main.zip)
